@@ -1,8 +1,9 @@
-from slobyparser.common.t_names import T_NAMES
+from slobyparser.types.token_types import token_value, token_type
 
 
-class Token:
-    def __init__(self, type_, value):
+class Token(str):
+    __slots__ = ("type", "value")
+    def __init__(self, type_: token_type = "", value: token_value = None):
         self.type = type_
         self.value = value
 
@@ -14,4 +15,4 @@ class Token:
 
     def __repr__(self):
         """str representation of the object, it contain information about the object(information)"""
-        pass
+        return f'Token(type_:{self.type}, value={self.value})'
