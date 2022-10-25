@@ -1,7 +1,7 @@
 # third party
 import keyword
-from typing import Literal
 # this project
+import string
 from slobyparser.token import Token
 
 
@@ -10,6 +10,12 @@ class Keywords(Token):
     They are used to define the syntax and structure of the Python language.
     """
     ITEMS = keyword.kwlist
+
+    @staticmethod
+    def find_me(text) -> bool:
+        if text in Keywords.ITEMS:
+            return True
+        return False
 
 
 class Identifiers(Token):
@@ -21,6 +27,13 @@ class Identifiers(Token):
     5.An identifier can be of any length.
     """
 
+    # ITEMS = [can't get it]
+
+    @staticmethod
+    def find_me(text) -> bool:
+        if text.is_identifier():
+            return True
+        return False
 
 
 class Literals(Token):
@@ -33,8 +46,30 @@ class Literals(Token):
     """
 
 
+
+
 class Operators(Token):
     """
     Operators are used to perform operations on variables and values.
     """
     ITEMS = ["+", "-", "*", "/", "%", "**", "//"]
+
+    @staticmethod
+    def find_me(text) -> bool:
+        if text in Operators.ITEMS:
+            return True
+        return False
+
+
+class Punctuators(Token):
+    """
+    A punctuator is a token that has syntactic and semantic meaning to the compiler, but the exact significance depends on the context
+    """
+
+    ITEMS = string.punctuation
+
+    @staticmethod
+    def find_me(text) -> bool:
+        if text in Punctuators.ITEMS:
+            return True
+        return False
