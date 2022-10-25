@@ -1,2 +1,2 @@
 # SlobyParser
-Compiler of the sloby projects
+Parser of the sloby projects
